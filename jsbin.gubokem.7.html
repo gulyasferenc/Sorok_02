@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2017 by gulyasferenc (http://jsbin.com/gubokem/7/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Practice JavaScript by drawing</title>
+</head>
+<body>
+ Sorok<br/> 
+  <canvas id="myCanvas" height="300" width="450" style="border: 1px solid black"></canvas>
+<script id="jsbin-javascript">
+var canvas = document.getElementById('myCanvas');
+var context = canvas.getContext('2d');
+var vaszonSzelesseg = canvas.width;
+var vaszonMagassag = canvas.height;
+if(vaszonSzelesseg < vaszonMagassag){
+	alert("A vászon szélessége nem lehet kisebb a magasságánál! Kérem, módosítsa a vászon méreteit. A program befejezi futását.");
+    debugger;
+}
+var oszto = prompt ("Egy négyzet oldala hányszor legyen rövidebb a vászon magasságánál?");
+var kozPerNegyzetOldal =  prompt("Két négyzet közti távolság hány %-a legyen egy négyzet oldalának?");
+var negyzetOldal = vaszonMagassag/oszto; //egy négyzet oldalának a hosszúsága
+var kozokHossza = kozPerNegyzetOldal*negyzetOldal/100;  //két négyzet közötti távolság
+var sorokMaxSzama = (vaszonMagassag-kozokHossza)/(negyzetOldal+kozokHossza); //ennyi sor fér el úgy, hogy a lap alján legalább két négyzet közötti távolságnak megfelelő margó maradjon
+context.fillStyle = 'rgba(255,214,0,1.0)';
+for(i=1; i<=sorokMaxSzama; i++){
+	var z=i-1;   
+	  for(j=1; j<=i; j++){
+	     var w = j-1;
+    hPos = z*negyzetOldal+i*kozokHossza; //alert("hPos = " + hPos); 
+	wPos = w*negyzetOldal+j*kozokHossza; //alert("wPos = " + wPos);
+   context.fillRect(wPos,hPos,negyzetOldal,negyzetOldal);
+   }
+}
+
+</script>
+</body>
+</html>
